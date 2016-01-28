@@ -15,15 +15,15 @@ With Kirby Patterns you can build your site with clean reusable modules, while t
 0. Install Kirby. I'd recommend [Kirby's Plainkit](https://github.com/getkirby/plainkit)
 1. [Download Kirby Patterns](https://github.com/getkirby/patterns/archive/master.zip) from Github
 2. Copy the patterns folder into `/site/plugins` (Create the plugins folder if it does not exist yet)
-3. Create a new /site/patterns folder and start building your patterns in there.
+3. Create a new `/site/patterns` folder and start building your patterns in there.
 
 ## Patterns readme.md
 
-As on of your first steps after the installation, you should put a readme.md in `/site/patterns` This will automatically be used by the Patterns interface to provide a nice little introduction page for your library.
+As on of your first steps after the installation, you should put a `readme.md` in `/site/patterns` This will automatically be used by the Patterns interface to provide a nice little introduction page for your library.
 
 ## Options
 
-The following options can be set in your Kirby config file. 
+The following options can be set in your `/site/config/config.php`
 
 ```php
 c::set('patterns.title', 'Patterns');
