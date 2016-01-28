@@ -2,6 +2,14 @@
 
 With Kirby Patterns you can build your site with clean reusable modules, while the plugin creates a living styleguide for you automatically. 
 
+## Video Demo
+
+<https://vimeo.com/153132557>
+
+## Screenshots
+
+<https://gist.github.com/bastianallgeier/27f604fc838a266be482#gistcomment-1677662>
+
 ## Installation
 
 1. [Download Kirby Patterns](https://github.com/getkirby/patterns/archive/master.zip) from Github
