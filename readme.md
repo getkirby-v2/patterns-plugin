@@ -4,7 +4,7 @@ With Kirby Patterns you can build your site with clean reusable modules, while t
 
 ## Installation
 
-1. [Download Kirby Patterns](#) from Github
+1. [Download Kirby Patterns](https://github.com/getkirby/patterns/archive/master.zip) from Github
 2. Copy the patterns folder into `/site/plugins` (Create the plugins folder if it does not exist yet)
 3. Create a new /site/patterns folder and start building your patterns in there.
 
