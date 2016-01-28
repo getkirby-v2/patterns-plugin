@@ -257,6 +257,10 @@ Afterwards you can run `gulp` in order to build the assets or `gulp watch` to wo
 
 I am by no means the best frontend dev out there, so I'm sure you will find a smarter way to setup your build process with grunt, gulp or npm anyway. 
 
+## Customizing the design of the Patterns interface
+
+The dark default theme might not be for everyone, but it's very easy to load your own stylesheet and even js to customize the interface. The app is looking for an `/assets/patterns/index.css` and a `/assets/patterns/index.js` file. If not provided it will load the default theme. So by adding those files you can overwrite any styles you want. 
+
 ## Requirements
 
 - Kirby 2.2.3+
