@@ -2,19 +2,28 @@
 
 With Kirby Patterns you can build your site with clean reusable modules, while the plugin creates a living styleguide for you automatically. 
 
+## Video Demo
+
+<https://vimeo.com/153132557>
+
+## Screenshots
+
+<https://gist.github.com/bastianallgeier/27f604fc838a266be482#gistcomment-1677662>
+
 ## Installation
 
-1. [Download Kirby Patterns](#) from Github
+0. Install Kirby. I'd recommend [Kirby's Plainkit](https://github.com/getkirby/plainkit)
+1. [Download Kirby Patterns](https://github.com/getkirby/patterns/archive/master.zip) from Github
 2. Copy the patterns folder into `/site/plugins` (Create the plugins folder if it does not exist yet)
-3. Create a new /site/patterns folder and start building your patterns in there.
+3. Create a new `/site/patterns` folder and start building your patterns in there.
 
 ## Patterns readme.md
 
-As on of your first steps after the installation, you should put a readme.md in `/site/patterns` This will automatically be used by the Patterns interface to provide a nice little introduction page for your library.
+As on of your first steps after the installation, you should put a `readme.md` in `/site/patterns` This will automatically be used by the Patterns interface to provide a nice little introduction page for your library.
 
 ## Options
 
-The following options can be set in your Kirby config file. 
+The following options can be set in your `/site/config/config.php`
 
 ```php
 c::set('patterns.title', 'Patterns');
@@ -247,6 +256,10 @@ npm install --save-dev gulp-image
 Afterwards you can run `gulp` in order to build the assets or `gulp watch` to work on your patterns and convert the assets on the fly.
 
 I am by no means the best frontend dev out there, so I'm sure you will find a smarter way to setup your build process with grunt, gulp or npm anyway. 
+
+## Customizing the design of the Patterns interface
+
+The dark default theme might not be for everyone, but it's very easy to load your own stylesheet and even js to customize the interface. The app is looking for an `/assets/patterns/index.css` and a `/assets/patterns/index.js` file. If not provided it will load the default theme. So by adding those files you can overwrite any styles you want. 
 
 ## Requirements
 
