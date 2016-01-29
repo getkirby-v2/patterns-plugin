@@ -17,6 +17,7 @@ class Pattern {
   public $path;
   public $data;
   public $root;
+  public $config = null;
 
   public function __construct($path = '', $data = []) {
     $this->lab  = lab::instance();
@@ -87,6 +88,10 @@ class Pattern {
     return $this->name;
   }
 
+  public function title() {
+    return a::get($this->config(), 'title', $this->name());
+  }
+
   public function files() {
 
     $files = new Collection;
@@ -126,12 +131,14 @@ class Pattern {
 
   public function config() {
 
+    if(!is_null($this->config)) return $this->config;
+
     $config = $this->file('config.php');
 
     if(file_exists($config)) {
-      return (array)require($config);
+      return $this->config = (array)require($config);
     } else {
-      return [];
+      return $this->config = [];
     }
 
   }

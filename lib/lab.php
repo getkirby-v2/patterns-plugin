@@ -211,7 +211,7 @@ class Lab {
           }
 
           return $this->view('layouts/main', [
-            'title'   => $this->title() . ' / ' . $pattern->name(),
+            'title'   => $this->title() . ' / ' . $pattern->title(),
             'menu'    => $this->menu(null, $path),
             'content' => $this->view('views/pattern', [
               'preview' => $preview,
@@ -250,7 +250,7 @@ class Lab {
       if($pattern->isHidden()) continue;
 
       $html[] = '<li>';
-      $html[] = html::a($pattern->url(), '<span>' . $pattern->name() . '</span>', ['class' => $path == $pattern->path() ? 'active' : null]);
+      $html[] = html::a($pattern->url(), '<span>' . $pattern->title() . '</span>', ['class' => $path == $pattern->path() ? 'active' : null]);
 
       if($pattern->isOpen($path)) {
         $html[] = $this->menu($pattern->children(), $path);        
@@ -283,7 +283,7 @@ class Lab {
       $snippet = 'html';
 
       // pass the mode to the template
-      $data['view'] = in_array(get('view'), $views) ? get('view') : 'php';
+      $data['view'] = in_array(get('view'), $views) ? get('view') : $this->kirby->option('patterns.preview.mode', 'preview');
 
       switch($data['view']) {
         case 'preview':
