@@ -75,6 +75,17 @@ c::set('patterns.preview.js', ['assets/js/jquery.js', 'assets/js/patterns.js']);
 
 You can use this option to set the default background color for the pattern preview screen. Any valid CSS value can be used. By default no specific color value is being set. A pattern can overwrite this with the `background` option (see further down)
 
+### patterns.preview.mode
+
+The default mode to display a pattern is the iframe preview, if a html template file exists. This gives the best impression how the pattern will look on your site. But you can change this to `php` or `html` instead to switch to the particular tab by default. 
+
+Valid values: 
+
+- preview (default)
+- php
+- html
+
+
 
 ## Creating a pattern
 
@@ -103,6 +114,16 @@ A pattern config file must return an associative PHP array:
 
 return [
   // your pattern config goes here
+];
+```
+
+### title
+
+The default title for a pattern is the name of the pattern folder. You can change this in the config though to make it more human readable. 
+
+```php
+return [
+  'title' => 'Pattern Title'
 ];
 ```
 
