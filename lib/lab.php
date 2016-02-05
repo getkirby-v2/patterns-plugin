@@ -289,6 +289,7 @@ class Lab {
         case 'preview':
 
           try {
+            lab::$mode = 'preview';
             $pattern->render();
             $data['content'] = '<iframe src="' . $pattern->url() . '/preview"></iframe>';
           } catch(Exception $e) {
