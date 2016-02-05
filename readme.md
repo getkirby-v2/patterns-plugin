@@ -187,7 +187,7 @@ return [
 To use a pattern in your Kirby templates or snippets you can use the new `pattern()` method, which will be available as soon as the plugin is being installed. 
 
 ```php
-<? pattern('header/logo') ?>
+<?php pattern('header/logo') ?>
 ```
 
 ### Passing options to the pattern
@@ -195,7 +195,7 @@ To use a pattern in your Kirby templates or snippets you can use the new `patter
 You can pass additional variables and options to the pattern and overwrite its defaults that way. 
 
 ```php
-<? pattern('header/logo', ['class' 'logo logo-on-black']) ?>
+<?php pattern('header/logo', ['class' 'logo logo-on-black']) ?>
 ```
 
 ## Nesting patterns

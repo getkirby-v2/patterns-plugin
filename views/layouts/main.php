@@ -13,13 +13,13 @@
     <?= $menu ?>
   </nav>
   <?= $content ?>
-  <? if(!empty($modal)): ?>
+  <?php if(!empty($modal)): ?>
   <div class="modal">
     <div class="modal-content">
       <?= $modal ?>
     </div>
   </div>
-  <? endif ?>
+  <?php endif ?>
   <?= js($lab->theme()->js()) ?>
 </body>
 </html>
