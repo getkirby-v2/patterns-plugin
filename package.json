@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "-",
   "license": "-",
+  "type": "kirby-plugin",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
