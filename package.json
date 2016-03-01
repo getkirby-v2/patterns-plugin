@@ -1,8 +1,8 @@
 {
   "name": "patterns",
   "version": "1.0.0",
-  "description": "-",
-  "license": "-",
+  "description": "Kirby Patterns Plugin",
+  "license": "MIT",
   "type": "kirby-plugin",
   "devDependencies": {
     "gulp": "^3.9.0",
