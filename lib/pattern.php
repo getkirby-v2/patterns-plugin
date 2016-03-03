@@ -56,7 +56,7 @@ class Pattern {
 
     foreach($defaults as $key => $value) {
       if(!isset($this->data[$key]) and !isset(tpl::$data[$key])) {
-        if(is_callable($value)) {
+        if(is_a($value, 'Closure')) {
           $data[$key] = call($value, [$this]);
         } else {
           $data[$key] = $value;
