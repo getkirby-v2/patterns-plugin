@@ -27,7 +27,7 @@ class Pattern {
     $this->data = $data;
   }
 
-  public function file($ext) {    
+  public function file($ext) {
     return $this->root . DS . $this->name . '.' . $ext;
   }
 
@@ -73,7 +73,15 @@ class Pattern {
   }
 
   public function template() {
-    return tpl::load($this->file('html.php'), $this->data());
+
+    $tpl = $this->file('html.php');
+
+    if (('preview' === lab::$mode) && $this->isOpen() && file_exists($this->file('preview.php'))) {
+      $tpl = $this->file('preview.php');
+    }
+
+    return tpl::load($tpl, $this->data());
+
   }
 
   public function render() {
@@ -107,16 +115,18 @@ class Pattern {
 
   }
 
-  public function isOpen($path) {
-    if($path == $this->path) {
-      return true;
-    } else if(str::startsWith($path, $this->path)) {
-      return true;
+  public function isOpen($path = null) {
+
+    if (is_null($path) && ($pattern = $this->lab->current())) {
+      $path = $pattern->path();
     }
+
+    return ( $path == $this->path ) || str::startsWith($path, $this->path);
+
   }
 
   public function children() {
-    
+
     $children = new Collection;
 
     foreach(dir::read($this->root) as $dir) {
