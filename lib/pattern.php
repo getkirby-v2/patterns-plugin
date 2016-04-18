@@ -73,14 +73,18 @@ class Pattern {
   }
 
   public function template() {
+    return tpl::load($this->file('html.php'), $this->data());
+  }
 
-    $tpl = $this->file('html.php');
+  public function preview() {
 
-    if (('preview' === lab::$mode) && $this->isOpen() && file_exists($this->file('preview.php'))) {
-      $tpl = $this->file('preview.php');
+    $file = $this->file('preview.php');
+
+    if (file_exists($file)) {
+      return tpl::load($file, $this->data());
     }
 
-    return tpl::load($tpl, $this->data());
+    return $this->render();
 
   }
 

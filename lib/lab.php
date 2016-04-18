@@ -67,33 +67,6 @@ class Lab {
     return url($this->path());
   }
 
-  public function current() {
-
-    // Retrieve the first argument of current route wich represents the
-    // relative path
-    $args = kirby()->route()->arguments();
-    $path = a::first($args);
-
-    // Strip the current mode from the path so we get the requested
-    // file/directory
-    if (str::endsWith($path, '/' . lab::$mode)) {
-      $path = substr_replace($path, '', strlen($path) - strlen('/' . lab::$mode));
-    }
-
-    // Distinguish between a file or a pattern directory given as path argument
-    $root = !is_dir($this->root . DS . $path) ? dirname($path) : $path;
-
-    // Ensure a pattern with the given path exists before returning the reference
-    $pattern = new Pattern($root);
-
-    if (!$pattern->exists()) {
-      return false;
-    }
-
-    return $pattern;
-
-  }
-
   public function run($path = '/') {
 
     if($this->kirby->option('patterns.lock') && !$this->kirby->site()->user()) {
@@ -179,7 +152,7 @@ class Lab {
           $config  = $pattern->config();
 
           try {
-            $html = $pattern->render();
+            $html = $pattern->preview();
           } catch(Exception $e) {
             $html = '';
           }
@@ -317,7 +290,7 @@ class Lab {
 
           try {
             lab::$mode = 'preview';
-            $pattern->render();
+            $pattern->preview();
             $data['content'] = '<iframe src="' . $pattern->url() . '/preview"></iframe>';
           } catch(Exception $e) {
             $data['content'] = $this->error($e);
