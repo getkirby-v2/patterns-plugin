@@ -119,14 +119,8 @@ class Pattern {
 
   }
 
-  public function isOpen($path = null) {
-
-    if (is_null($path) && ($pattern = $this->lab->current())) {
-      $path = $pattern->path();
-    }
-
+  public function isOpen($path) {
     return ( $path == $this->path ) || str::startsWith($path, $this->path);
-
   }
 
   public function children() {
