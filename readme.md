@@ -175,7 +175,7 @@ return [
     return [
       'title' => page('blog/article-xyz')->title(),
       'text'  => 'Lorem ipsum…'
-    ]
+    ];
 
   }
 ];
