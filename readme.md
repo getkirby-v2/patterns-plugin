@@ -61,6 +61,16 @@ You can load multiple CSS files by passing an array of files:
 c::set('patterns.preview.css', ['assets/css/main.css', 'assets/css/theme.css']);
 ```
 
+If you need to decide on the CSS file(s) to use for preview dynamically per pattern, you can also use a callback that receives the pattern object:
+
+```php
+c::set('patterns.preview.css', function($pattern) {
+  $name = (str::startsWith($pattern->path(), 'test/'))? 'test' : 'main';
+  
+  return ['assets/css/' . $name . '.css', 'assets/css/theme.css'];
+});
+```
+
 ### patterns.preview.js
 
 Use this option to set where the final JS for your patterns is located. All the specified JS files will be loaded in the preview screen (in the footer) in order to apply behaviour to your patterns. By default the Patterns interface is looking for a `/assets/js/index.js` file.
@@ -69,6 +79,16 @@ You can load multiple JS files by passing an array of files:
 
 ```php
 c::set('patterns.preview.js', ['assets/js/jquery.js', 'assets/js/patterns.js']);
+```
+
+If you need to decide on the JS file(s) to use for preview dynamically per pattern, you can also use a callback that receives the pattern object:
+
+```php
+c::set('patterns.preview.js', function($pattern) {
+  $name = (str::startsWith($pattern->path(), 'test/'))? 'test' : 'main';
+  
+  return ['assets/js/jquery.js', 'assets/js/' . $name . '.js'];
+});
 ```
 
 ### patterns.preview.background

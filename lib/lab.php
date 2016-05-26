@@ -157,12 +157,19 @@ class Lab {
             $html = '';
           }
 
+          $css = $this->kirby->option('patterns.preview.css', 'assets/css/index.css');
+          $js  = $this->kirby->option('patterns.preview.js', 'assets/js/index.js');
+
+          // callbacks for css and js
+          if(is_callable($css)) $css = call($css, $pattern);
+          if(is_callable($js))  $js  = call($js, $pattern);
+
           return $this->view('views/preview', [
             'pattern'    => $pattern,
             'html'       => $html,
             'background' => a::get($config, 'background', $this->kirby->option('patterns.preview.background')),
-            'css'        => $this->kirby->option('patterns.preview.css', 'assets/css/index.css'),
-            'js'         => $this->kirby->option('patterns.preview.js', 'assets/js/index.js')
+            'css'        => $css,
+            'js'         => $js
           ]);
 
         }
