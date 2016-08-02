@@ -317,7 +317,7 @@ class Lab {
     } else {
 
       $ext  = $file->extension();
-      $code = ['php', 'html', 'js', 'css', 'scss', 'less', 'json', 'txt'];
+      $code = ['php', 'html', 'js', 'css', 'scss', 'sass', 'less', 'json', 'txt'];
 
       if(in_array($ext, $code)) {
         $snippet = 'code';
@@ -343,6 +343,7 @@ class Lab {
       'php'   => 'php',
       'js'    => 'js',
       'scss'  => 'sass',
+      'sass'  => 'sass',
       'md'    => 'markdown',
       'mdown' => 'markdown',      
     ];
