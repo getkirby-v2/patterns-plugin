@@ -6,9 +6,6 @@ load([
   'kirby\\patterns\\lab'     => __DIR__ . DS . 'lib' . DS . 'lab.php'
 ]);
 
-// load whoops
-require_once(__DIR__ . DS . 'vendor' . DS . 'autoload.php');
-
 // load all helper functions
 require_once(__DIR__ . DS . 'lib' . DS . 'helpers.php');
 

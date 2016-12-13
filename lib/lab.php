@@ -73,15 +73,6 @@ class Lab {
       go($this->kirby->option('error'));
     }
 
-    // error handling
-    $whoops = new \Whoops\Run;
-    $whoops->pushHandler(function($e) {
-      throw $e;
-      return \Whoops\Handler\Handler::QUIT;
-    });
-
-    $whoops->register();
-
     tpl::$data = [
       'site'  => $this->kirby->site(),
       'pages' => $this->kirby->site()->children(),
