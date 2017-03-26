@@ -32,7 +32,7 @@ class Lab {
     // inject the patterns routes
     kirby()->routes([
       [
-        'pattern' => $this->path . '/(:all?)', 
+        'pattern' => $this->path . '/(:all?)',
         'action' => function($path = null) use($lab) {
           return $lab->run($path);
         }
@@ -83,7 +83,7 @@ class Lab {
     $router = new Router();
     $router->register([
       [
-        'pattern' => '/', 
+        'pattern' => '/',
         'action'  => function() {
 
           $readme = $this->root() . DS . 'readme.md';
@@ -93,11 +93,11 @@ class Lab {
           } else {
             $modal = null;
           }
-        
+
           if(is_file($readme)) {
             $markdown = kirbytext(f::read($readme));
           } else {
-            $markdown = null;            
+            $markdown = null;
           }
 
           return $this->view('layouts/main', [
@@ -110,7 +110,7 @@ class Lab {
         }
       ],
       [
-        'pattern' => 'assets/(:any)', 
+        'pattern' => 'assets/(:any)',
         'action'  => function($file) {
 
           switch($file) {
@@ -123,7 +123,7 @@ class Lab {
               $mime = 'text/css';
               break;
             default:
-              return new Response('Not found', 'text/html', 404); 
+              return new Response('Not found', 'text/html', 404);
               break;
           }
 
@@ -141,9 +141,9 @@ class Lab {
 
           $pattern = new Pattern($path);
           $config  = $pattern->config();
-          
+
           try {
-            $html = $pattern->render();
+            $html = $pattern->preview();
           } catch(Exception $e) {
             $html = '';
           }
@@ -159,14 +159,14 @@ class Lab {
         }
       ],
       [
-        'pattern' => '(:all)', 
+        'pattern' => '(:all)',
         'action'  => function($path) {
 
           $pattern = new Pattern($path);
           $file    = null;
 
           if(!$pattern->exists()) {
-            
+
             $filename = basename($path);
             $path     = dirname($path);
 
@@ -180,7 +180,7 @@ class Lab {
               $file    = $pattern->files()->get($filename);
 
               if($file) {
-                $preview = $this->preview($pattern, $file);       
+                $preview = $this->preview($pattern, $file);
               } else {
                 $preview = $this->view('previews/error', [
                   'error' => 'The file could not be found'
@@ -196,7 +196,7 @@ class Lab {
           } else {
             $preview = $this->view('previews/empty');
           }
-          
+
           if($pattern->isHidden()) {
             go($this->url());
           }
@@ -207,7 +207,7 @@ class Lab {
             'content' => $this->view('views/pattern', [
               'preview' => $preview,
               'info'    => $this->view('snippets/info', [
-                'pattern' => $pattern, 
+                'pattern' => $pattern,
                 'file'    => $file,
               ])
             ])
@@ -226,7 +226,7 @@ class Lab {
   }
 
   public function menu($patterns = null, $path = '') {
-  
+
     if(is_null($patterns)) {
       $pattern  = new Pattern();
       $patterns = $pattern->children();
@@ -244,7 +244,7 @@ class Lab {
       $html[] = html::a($pattern->url(), '<span>' . $pattern->title() . '</span>', ['class' => $path == $pattern->path() ? 'active' : null]);
 
       if($pattern->isOpen($path)) {
-        $html[] = $this->menu($pattern->children(), $path);        
+        $html[] = $this->menu($pattern->children(), $path);
       }
 
       $html[] = '</li>';
@@ -270,7 +270,7 @@ class Lab {
 
     if($file->filename() == $pattern->name() . '.html.php') {
 
-      $views   = ['preview', 'html', 'php'];      
+      $views   = ['preview', 'html', 'php'];
       $snippet = 'html';
 
       // pass the mode to the template
@@ -281,7 +281,7 @@ class Lab {
 
           try {
             lab::$mode = 'preview';
-            $pattern->render();
+            $pattern->preview();
             $data['content'] = '<iframe src="' . $pattern->url() . '/preview"></iframe>';
           } catch(Exception $e) {
             $data['content'] = $this->error($e);
@@ -291,7 +291,7 @@ class Lab {
         case 'php':
           $data['content'] = $this->codeblock($file);
           break;
-        case 'html':          
+        case 'html':
           $data['content'] = $this->codeblock($pattern);
           break;
       }
@@ -335,7 +335,7 @@ class Lab {
       'js'    => 'js',
       'scss'  => 'sass',
       'md'    => 'markdown',
-      'mdown' => 'markdown',      
+      'mdown' => 'markdown',
     ];
 
     try {
@@ -344,7 +344,7 @@ class Lab {
         $code = $object->read();
         $lang = a::get($langs, $object->extension(), 'markup');
       } else if(is_a($object, 'Kirby\\Patterns\\Pattern')) {
-        $code = htmlawed($object->render(), ['tidy' => 1]);        
+        $code = htmlawed($object->render(), ['tidy' => 1]);
         $lang = 'php';
       } else if(is_string($object)) {
         $code = $object;
@@ -365,7 +365,7 @@ class Lab {
   }
 
   public function error($e) {
-    return '<div class="error">There\'s an error in your pattern: <strong>' . $e->getMessage() . '</strong></div>';    
+    return '<div class="error">There\'s an error in your pattern: <strong>' . $e->getMessage() . '</strong></div>';
   }
 
   public function theme() {
