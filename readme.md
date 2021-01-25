@@ -1,4 +1,4 @@
-# Kirby Patterns
+# Kirby 2 Patterns
 
 With Kirby Patterns you can build your site with clean reusable modules, while the plugin creates a living styleguide for you automatically. 
 
